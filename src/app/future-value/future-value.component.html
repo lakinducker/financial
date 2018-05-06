@@ -1,0 +1,43 @@
+<div class="row">
+  <h3>Future Value Calculator</h3>
+</div>
+<div class="row">
+  <form #form="ngForm" novalidate>
+    <div class="col_sm">
+      <div class="form-group">
+        <label for="presentValue">Present Value</label>
+        <input type="number" class="form-control" id="presentValue"
+                name="presentValue"
+                [(ngModel)]="presentValue" placeholder="Present Value">
+      </div>
+    </div>
+    <div class="col_sm">
+      <div class="form-group">
+        <label for="rate">Rate (%)</label>
+        <input type="number" class="form-control" id="rate"
+                name="rate"
+                [(ngModel)]="rate" placeholder="Rate">
+      </div>
+    </div>
+    <div class="col_sm">
+      <div class="form-group">
+        <label for="periods">Number of Periods</label>
+        <input type="number" class="form-control" id="periods"
+                name="periods"
+                [(ngModel)]="periods" placeholder="Number of Periods">
+      </div>
+    </div>
+    <div class="col_sm">
+      <button type="submit" class="btn btn-primary" (click)="calculateFutureValue()">Calculate</button>
+    </div>
+  </form>
+</div>
+
+
+<div *ngIf="futureValue" class="row result">
+  <div class="col-sm">
+    <div class="alert alert-primary" role="alert">
+      Future Value: {{futureValue | currency:'USD'}}
+    </div>
+  </div>
+</div>
