@@ -1,37 +1,69 @@
 <div class="row">
   <h3>Future Value Calculator</h3>
 </div>
-<div class="row">
-  <form #form="ngForm" novalidate>
-    <div class="col_sm">
+<form #form="ngForm" novalidate>
+  <div class="row">
+    <div class="col-md-4">
       <div class="form-group">
-        <label for="presentValue">Present Value</label>
-        <input type="number" class="form-control" id="presentValue"
-                name="presentValue"
-                [(ngModel)]="presentValue" placeholder="Present Value">
+        <label for="presentValueInput">Present Value</label>
+        <input type="number" class="form-control"
+                id="presentValueInput"
+                name="presentValueInput"
+                #presentValueInput="ngModel"
+                required
+                [(ngModel)]="presentValue"
+                placeholder="Present Value">
+      </div>
+      <div *ngIf="presentValueInput.invalid && (presentValueInput.dirty || presentValueInput.touched)"
+        class="alert alert-danger">
+        <div *ngIf="presentValueInput?.errors.required">
+          Present Value is required.
+        </div>
       </div>
     </div>
-    <div class="col_sm">
+    <div class="col-md-4">
       <div class="form-group">
-        <label for="rate">Rate (%)</label>
-        <input type="number" class="form-control" id="rate"
-                name="rate"
-                [(ngModel)]="rate" placeholder="Rate">
+        <label for="rateInput">Rate (%)</label>
+        <input type="number" class="form-control"
+                id="rateInput"
+                name="rateInput"
+                #rateInput="ngModel"
+                required
+                [(ngModel)]="rate"
+                placeholder="Rate">
+      </div>
+      <div *ngIf="rateInput.invalid && (rateInput.dirty || rateInput.touched)"
+        class="alert alert-danger">
+        <div *ngIf="rateInput?.errors.required">
+          Rate is required.
+        </div>
       </div>
     </div>
-    <div class="col_sm">
+    <div class="col-md-4">
       <div class="form-group">
-        <label for="periods">Number of Periods</label>
-        <input type="number" class="form-control" id="periods"
-                name="periods"
-                [(ngModel)]="periods" placeholder="Number of Periods">
+        <label for="periodsInput">Number of Periods</label>
+        <input type="number" class="form-control"
+                id="periodsInput"
+                name="periodsInput"
+                #periodsInput="ngModel"
+                required
+                [(ngModel)]="periods"
+                placeholder="Number of Periods">
+      </div>
+      <div *ngIf="periodsInput.invalid && (periodsInput.dirty || periodsInput.touched)"
+        class="alert alert-danger">
+        <div *ngIf="periodsInput?.errors.required">
+          Number of Periods is required.
+        </div>
       </div>
     </div>
-    <div class="col_sm">
-      <button type="submit" class="btn btn-primary" (click)="calculateFutureValue()">Calculate</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary" (click)="calculateFutureValue()">Calculate</button>
     </div>
-  </form>
-</div>
+  </div>
+</form>
 
 
 <div *ngIf="futureValue" class="row result">

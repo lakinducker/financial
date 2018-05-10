@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { FutureValueComponent } from './future-value/future-value.component';
 import { CompoundInterestComponent } from './compound-interest/compound-interest.component';
 import { PresentValueComponent } from './present-value/present-value.component';
+import { MortgageComponent } from './mortgage/mortgage.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PresentValueComponent } from './present-value/present-value.component';
     AppComponent,
     FutureValueComponent,
     CompoundInterestComponent,
-    PresentValueComponent
+    PresentValueComponent,
+    MortgageComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,6 +35,7 @@ import { PresentValueComponent } from './present-value/present-value.component';
       { path: 'future-value', component: FutureValueComponent },
       { path: 'present-value', component: PresentValueComponent },
       { path: 'compound-interest', component: CompoundInterestComponent },
+      { path: 'mortgage', component: MortgageComponent },
       { path: '', redirectTo: 'future-value', pathMatch: 'full' },
       { path: '**', redirectTo: 'future-value', pathMatch: 'full' }
     ], { useHash: true })

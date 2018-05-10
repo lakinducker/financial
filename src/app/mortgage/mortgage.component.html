@@ -1,0 +1,139 @@
+
+<div class="row">
+  <h3>Mortgage Payoff Calculator</h3>
+</div>
+
+<form #form="ngForm" novalidate>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="outstandingInput">Oustanding Balance</label>
+        <input type="number" class="form-control"
+                id="outstandingInput" name="outstandingInput" #outstandingInput="ngModel"
+                [(ngModel)]="outstanding" required placeholder="Outstanding Balance">
+      </div>
+      <div *ngIf="outstandingInput.invalid && (outstandingInput.dirty || outstandingInput.touched)"
+        class="alert alert-danger">
+        <div *ngIf="outstandingInput?.errors.required">
+          Oustanding Balance is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="rateInput">Interest Rate (%)</label>
+        <input type="number" class="form-control"
+                id="rateInput" name="rateInput" #rateInput="ngModel"
+                [(ngModel)]="rate" required placeholder="Interest Rate">
+      </div>
+      <div *ngIf="rateInput.invalid && (rateInput.dirty || rateInput.touched)"
+        class="alert alert-danger">
+        <div *ngIf="rateInput?.errors.required">
+          Interest Rate is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="monthlyInput">Monthly Payment</label>
+        <input type="number" class="form-control"
+                id="monthlyInput" name="monthlyInput" #monthlyInput="ngModel"
+                [(ngModel)]="monthly" required placeholder="Monthly Payment">
+      </div>
+      <div *ngIf="monthlyInput.invalid && (monthlyInput.dirty || monthlyInput.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="monthlyInput?.errors.required">
+          Monthly Payment is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="escrow">Escrow</label>
+        <input type="number" class="form-control"
+                id="escrow" name="escrow" #escrowInput="ngModel"
+                [(ngModel)]="escrow" required placeholder="Escrow">
+      </div>
+      <div *ngIf="escrowInput.invalid && (escrowInput.dirty || escrowInput.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="escrowInput?.errors.required">
+          Escrow is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="additional">Additional Principal</label>
+        <input type="number" class="form-control"
+                id="additional" name="additional" #additionalInput="ngModel"
+                [(ngModel)]="additional" required placeholder="Additional Principal">
+      </div>
+      <div *ngIf="additionalInput.invalid && (additionalInput.dirty || additionalInput.touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="additionalInput?.errors.required">
+          Additional is required.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button [disabled]=" form.invalid" type="submit" class="btn btn-primary" (click)="calculateMortgage()">Calculate</button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="totalInterest && totalMonths && totalYears" class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Total Interest</th>
+        <th scope="col">Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{totalInterest | currency}}</td>
+        <td>
+          {{totalYears | number}} years <br>
+          (i.e. {{totalMonths}} months)
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="months.length" class="row">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Outstanding</th>
+        <th scope="col">Rate</th>
+        <th scope="col">Monthly</th>
+        <th scope="col">Escrow</th>
+        <th scope="col">Interest</th>
+        <th scope="col">Principal</th>
+        <th scope="col">Additional</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let month of months; index as i">
+          <th scope="row">{{i + 1}}</th>
+        <td>{{month.outstanding | currency}}</td>
+        <td>{{(month.rate / 100) | percent:'1.2-3'}}</td>
+        <td>{{month.monthly | currency}}</td>
+        <td>{{month.escrow | currency}}</td>
+        <td>{{month.interest | currency}}</td>
+        <td>{{month.principal | currency}}</td>
+        <td>{{month.additional | currency}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
