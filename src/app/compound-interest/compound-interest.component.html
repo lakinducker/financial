@@ -6,17 +6,10 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="originalBalanceInput">Original Balance</label>
-        <input type="number"
-                class="form-control"
-                id="originalBalanceInput"
-                name="originalBalanceInput"
-                #originalBalanceInput="ngModel"
-                required
-                [(ngModel)]="originalBalance"
-                placeholder="Original Balance">
+        <input type="number" class="form-control" id="originalBalanceInput" name="originalBalanceInput" #originalBalanceInput="ngModel"
+          required [(ngModel)]="originalBalance" placeholder="Original Balance" appCurrency>
       </div>
-      <div *ngIf="originalBalanceInput.invalid && (originalBalanceInput.dirty || originalBalanceInput.touched)"
-        class="alert alert-danger">
+      <div *ngIf="originalBalanceInput.invalid && (originalBalanceInput.dirty || originalBalanceInput.touched)" class="alert alert-danger">
         <div *ngIf="originalBalanceInput?.errors.required">
           Original Balance is required.
         </div>
@@ -25,17 +18,10 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="rateInput">Rate (%) per Period</label>
-        <input type="number"
-                class="form-control"
-                id="rateInput"
-                name="rateInput"
-                #rateInput="ngModel"
-                required
-                [(ngModel)]="rate"
-                placeholder="Rate">
+        <input type="number" class="form-control" id="rateInput" name="rateInput" #rateInput="ngModel" required [(ngModel)]="rate"
+          placeholder="Rate">
       </div>
-      <div *ngIf="rateInput.invalid && (rateInput.dirty || rateInput.touched)"
-        class="alert alert-danger">
+      <div *ngIf="rateInput.invalid && (rateInput.dirty || rateInput.touched)" class="alert alert-danger">
         <div *ngIf="rateInput?.errors.required">
           Rate is required.
         </div>
@@ -44,17 +30,10 @@
     <div class="col-md-4">
       <div class="form-group">
         <label for="periodsInput">Number of Periods</label>
-        <input type="number"
-                class="form-control"
-                id="periodsInput"
-                name="periodsInput"
-                #periodsInput="ngModel"
-                required
-                [(ngModel)]="periods"
-                placeholder="Number of Periods">
+        <input type="number" class="form-control" id="periodsInput" name="periodsInput" #periodsInput="ngModel" required [(ngModel)]="periods"
+          placeholder="Number of Periods">
       </div>
-      <div *ngIf="periodsInput.invalid && (periodsInput.dirty || periodsInput.touched)"
-        class="alert alert-danger">
+      <div *ngIf="periodsInput.invalid && (periodsInput.dirty || periodsInput.touched)" class="alert alert-danger">
         <div *ngIf="periodsInput?.errors.required">
           Number of Periods is required.
         </div>

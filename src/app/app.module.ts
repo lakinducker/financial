@@ -7,13 +7,12 @@ import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
-
 import { AppComponent } from './app.component';
 import { FutureValueComponent } from './future-value/future-value.component';
 import { CompoundInterestComponent } from './compound-interest/compound-interest.component';
 import { PresentValueComponent } from './present-value/present-value.component';
 import { MortgageComponent } from './mortgage/mortgage.component';
-
+import { CagrComponent } from './cagr/cagr.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,8 @@ import { MortgageComponent } from './mortgage/mortgage.component';
     FutureValueComponent,
     CompoundInterestComponent,
     PresentValueComponent,
-    MortgageComponent
+    MortgageComponent,
+    CagrComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -31,16 +31,20 @@ import { MortgageComponent } from './mortgage/mortgage.component';
     ChartsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    RouterModule.forRoot([
-      { path: 'future-value', component: FutureValueComponent },
-      { path: 'present-value', component: PresentValueComponent },
-      { path: 'compound-interest', component: CompoundInterestComponent },
-      { path: 'mortgage', component: MortgageComponent },
-      { path: '', redirectTo: 'future-value', pathMatch: 'full' },
-      { path: '**', redirectTo: 'future-value', pathMatch: 'full' }
-    ], { useHash: true })
+    RouterModule.forRoot(
+      [
+        { path: 'future-value', component: FutureValueComponent },
+        { path: 'present-value', component: PresentValueComponent },
+        { path: 'compound-interest', component: CompoundInterestComponent },
+        { path: 'cagr', component: CagrComponent },
+        { path: 'mortgage', component: MortgageComponent },
+        { path: '', redirectTo: 'future-value', pathMatch: 'full' },
+        { path: '**', redirectTo: 'future-value', pathMatch: 'full' }
+      ],
+      { useHash: true }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

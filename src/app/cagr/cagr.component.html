@@ -1,0 +1,56 @@
+<div class="row">
+  <h3>Compound Annual Growth Rate Calculator</h3>
+</div>
+<form #form="ngForm" novalidate>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="beginningInput">Beginning Value</label>
+        <input type="number" class="form-control" id="beginningInput" name="beginningInput" #beginningInput="ngModel" required [(ngModel)]="beginning"
+          placeholder="Original Balance" appCurrency>
+      </div>
+      <div *ngIf="beginningInput.invalid && (beginningInput.dirty || beginningInput.touched)" class="alert alert-danger">
+        <div *ngIf="beginningInput?.errors.required">
+          Beginning Balance is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="endingInput">Ending Value</label>
+        <input type="number" class="form-control" id="endingInput" name="endingInput" #endingInput="ngModel" required [(ngModel)]="ending"
+          placeholder="Original Balance" appCurrency>
+      </div>
+      <div *ngIf="endingInput.invalid && (endingInput.dirty || endingInput.touched)" class="alert alert-danger">
+        <div *ngIf="endingInput?.errors.required">
+          Beginning Balance is required.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="periodsInput">Number of Periods</label>
+        <input type="number" class="form-control" id="periodsInput" name="periodsInput" #periodsInput="ngModel" required [(ngModel)]="periods"
+          placeholder="Number of Periods">
+      </div>
+      <div *ngIf="periodsInput.invalid && (periodsInput.dirty || periodsInput.touched)" class="alert alert-danger">
+        <div *ngIf="periodsInput?.errors.required">
+          Number of Periods is required.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <button [disabled]="form.invalid" type="submit" class="btn btn-primary" (click)="calculateCagr()">Calculate</button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="cagr" class="row result">
+  <div class="col-sm">
+    <div class="alert alert-primary" role="alert">
+      Compound Annual Growth Rate: {{cagr | percent:'.2'}}
+    </div>
+  </div>
+</div>
