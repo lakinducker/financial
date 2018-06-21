@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CagrComponent } from './cagr.component';
+import { FormsModule } from '@angular/forms';
 
 describe('CagrComponent', () => {
   let component: CagrComponent;
@@ -8,7 +9,8 @@ describe('CagrComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CagrComponent]
+      declarations: [CagrComponent],
+      imports: [FormsModule]
     }).compileComponents();
   }));
 
