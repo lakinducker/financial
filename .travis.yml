@@ -8,9 +8,11 @@ addons:
 
 before_install:
   - pip install --user awscli
+  - npm install -g npm@latest
 
 before_script:
-  - npm install - @angular/cli webpack
+  - npm install -g @angular/cli
+  - npm install -g webpack
   - npm install nsp -g
   - npm install
 
