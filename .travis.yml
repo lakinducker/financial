@@ -2,15 +2,19 @@ sudo: required
 language: node_js
 node_js:
   - "10.5.0"
+
 addons:
   chrome: stable
+
 before_install:
   - pip install --user awscli
   - npm install -g npm@latest
+
 before_script:
   - npm install - @angular/cli webpack
   - npm install nsp -g
   - npm install
+
 script:
   - ng lint
   - ng test --browser=ChomeHeadless --watch=false --code-coverage --sm=false
