@@ -10,12 +10,6 @@ before_install:
   - pip install --user awscli
   - npm install -g npm@latest
 
-before_script:
-  - npm install -g @angular/cli
-  - npm install -g webpack
-  - npm install nsp -g
-  - npm install
-
 script:
   - ng lint
   - ng test --browser=ChomeHeadless --watch=false --code-coverage --sm=false
