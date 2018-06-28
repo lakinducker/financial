@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { MortgageComponent } from './mortgage.component';
 import { ChartsModule } from 'ng2-charts';
+import { truncate } from 'fs';
 
 describe('MortgageComponent', () => {
   let component: MortgageComponent;
@@ -163,6 +164,14 @@ describe('MortgageComponent', () => {
       expect(component.totalMonths).toEqual(2);
       expect(component.totalYears).toBeGreaterThanOrEqual(0.166);
       expect(component.totalYears).toBeLessThanOrEqual(0.167);
+    });
+  });
+
+  describe(`isValid`, () => {
+    it(`should return whether the scenario is valid`, () => {
+      // Assert
+      expect(component.isValid(1)).toEqual(false);
+      expect(component.isValid(0)).toEqual(true);
     });
   });
 });

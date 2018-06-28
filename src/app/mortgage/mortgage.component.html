@@ -75,7 +75,12 @@
   </div>
 </form>
 
-<div *ngIf="totalInterest && totalMonths && totalYears" class="row">
+<div *ngIf="!valid" class="alert alert-warning" role="alert">
+  <strong>Not a valid scenario!</strong> You need to enter a valid scenario that results in $0 in Outstanding Balance in 30 years
+  or less.
+</div>
+
+<div *ngIf="totalInterest && totalMonths && totalYears && valid" class="row">
   <table class="table">
     <thead>
       <tr>
@@ -95,15 +100,14 @@
   </table>
 </div>
 
-
-<div *ngIf="barChartData[0].data.length">
+<div *ngIf="barChartData[0].data.length && valid">
   <div style="display: block">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
       [chartType]="barChartType"></canvas>
   </div>
 </div>
 
-<div *ngIf="months.length" class="table-responsive">
+<div *ngIf="months.length && valid" class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>

@@ -1,6 +1,6 @@
 import { Month } from './month';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, Validators } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-mortgage',
@@ -29,6 +29,7 @@ export class MortgageComponent implements OnInit {
     { data: [], label: 'Interest' },
     { data: [], label: 'Principal' }
   ];
+  valid = true;
 
   constructor() {}
 
@@ -93,6 +94,7 @@ export class MortgageComponent implements OnInit {
     }
     this.calculateTotalInterest(this.months);
     this.calculateDuration(this.months);
+    this.valid = this.isValid(currentOustanding);
 
     // Update the chart data
     this.updateChartData();
@@ -122,5 +124,9 @@ export class MortgageComponent implements OnInit {
     this.barChartLabels = [];
     this.barChartData[0].data = [];
     this.barChartData[1].data = [];
+  }
+
+  isValid(currentOustanding) {
+    return currentOustanding <= 0 ? true : false;
   }
 }
