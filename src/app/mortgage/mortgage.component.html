@@ -70,7 +70,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <button [disabled]=" form.invalid" type="submit" class="btn btn-primary" (click)="calculateMortgage()">Calculate</button>
+      <button [disabled]=" form.invalid" type="submit" class="btn btn-primary" (click)="calculateMortgage()">Calculate Payoff</button>
     </div>
   </div>
 </form>
@@ -95,16 +95,24 @@
   </table>
 </div>
 
-<div *ngIf="months.length" class="row">
+
+<div *ngIf="barChartData[0].data.length">
+  <div style="display: block">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+      [chartType]="barChartType"></canvas>
+  </div>
+</div>
+
+<div *ngIf="months.length" class="table-responsive">
   <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">Year</th>
         <th scope="col">Month</th>
         <th scope="col">Outstanding</th>
-        <th scope="col">Rate</th>
-        <th scope="col">Monthly</th>
-        <th scope="col">Escrow</th>
+        <!-- <th scope="col">Rate</th> -->
+        <!-- <th scope="col">Monthly</th> -->
+        <!-- <th scope="col">Escrow</th> -->
         <th scope="col">Interest</th>
         <th scope="col">Principal</th>
         <th scope="col">Additional</th>
@@ -121,9 +129,9 @@
           {{i + 1}}
         </th>
         <td>{{month.outstanding | currency}}</td>
-        <td>{{(month.rate / 100) | percent:'1.2-3'}}</td>
-        <td>{{month.monthly | currency}}</td>
-        <td>{{month.escrow | currency}}</td>
+        <!-- <td>{{(month.rate / 100) | percent:'1.2-3'}}</td> -->
+        <!-- <td>{{month.monthly | currency}}</td> -->
+        <!-- <td>{{month.escrow | currency}}</td> -->
         <td>{{month.interest | currency}}</td>
         <td>{{month.principal | currency}}</td>
         <td>{{month.additional | currency}}</td>

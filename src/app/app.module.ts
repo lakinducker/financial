@@ -36,8 +36,8 @@ import { CagrComponent } from './cagr/cagr.component';
         { path: 'compound-interest', component: CompoundInterestComponent },
         { path: 'cagr', component: CagrComponent },
         { path: 'mortgage', component: MortgageComponent },
-        { path: '', redirectTo: 'future-value', pathMatch: 'full' },
-        { path: '**', redirectTo: 'future-value', pathMatch: 'full' }
+        { path: '', redirectTo: 'mortgage', pathMatch: 'full' },
+        { path: '**', redirectTo: 'mortgage', pathMatch: 'full' }
       ],
       { useHash: true }
     )

@@ -18,11 +18,21 @@ export class MortgageComponent implements OnInit {
   totalInterest: number;
   totalMonths: number;
   totalYears: number;
+  barChartOptions: any = {
+    scaleShowVerticalLines: false,
+    responsive: true
+  };
+  barChartLabels: string[] = ['Present', 'Future'];
+  barChartType = 'bar';
+  barChartLegend = true;
+  barChartData: any[] = [
+    { data: [], label: 'Interest' },
+    { data: [], label: 'Principal' }
+  ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   convertPercentage(percentage) {
     return percentage / 100;
@@ -47,32 +57,50 @@ export class MortgageComponent implements OnInit {
       monthly: monthly,
       escrow: escrow,
       interest: this.calculateInterestPayment(outstanding, rate),
-      principal: this.calculatePrincipal(monthly, escrow, this.calculateInterestPayment(outstanding, rate)),
-      additional: additional,
+      principal: this.calculatePrincipal(
+        monthly,
+        escrow,
+        this.calculateInterestPayment(outstanding, rate)
+      ),
+      additional: additional
     };
     return month;
   }
 
   calculateMortgage() {
+    // Clear the chart data
+    this.clearChartData();
+
+    // Calculate mortgage
     this.months = [];
     let currentOustanding = this.outstanding;
     let count = 360;
     while (currentOustanding > 0 && count > 0) {
-      const currentMonth = this.calculateMonth(currentOustanding, this.rate, this.monthly, this.escrow, this.additional);
+      const currentMonth = this.calculateMonth(
+        currentOustanding,
+        this.rate,
+        this.monthly,
+        this.escrow,
+        this.additional
+      );
       this.months.push(currentMonth);
       currentOustanding = this.calculateNewOutstanding(
         currentOustanding,
         currentMonth.principal,
-        this.additional);
+        this.additional
+      );
       count--;
     }
     this.calculateTotalInterest(this.months);
     this.calculateDuration(this.months);
+
+    // Update the chart data
+    this.updateChartData();
   }
 
   calculateTotalInterest(months) {
     this.totalInterest = 0;
-    months.forEach((month) => {
+    months.forEach(month => {
       this.totalInterest += month.interest;
     });
   }
@@ -80,5 +108,19 @@ export class MortgageComponent implements OnInit {
   calculateDuration(months) {
     this.totalMonths = months.length;
     this.totalYears = this.totalMonths / 12;
+  }
+
+  updateChartData() {
+    this.months.forEach((month, i) => {
+      this.barChartLabels.push((i + 1).toString());
+      this.barChartData[0].data.push(month.interest);
+      this.barChartData[1].data.push(month.principal);
+    });
+  }
+
+  clearChartData() {
+    this.barChartLabels = [];
+    this.barChartData[0].data = [];
+    this.barChartData[1].data = [];
   }
 }
