@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { MortgageComponent } from './mortgage.component';
+import { ChartsModule } from 'ng2-charts';
 
 describe('MortgageComponent', () => {
   let component: MortgageComponent;
@@ -9,10 +10,9 @@ describe('MortgageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MortgageComponent ],
-      imports: [ FormsModule ]
-    })
-    .compileComponents();
+      declarations: [MortgageComponent],
+      imports: [FormsModule, ChartsModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -35,14 +35,14 @@ describe('MortgageComponent', () => {
   describe(`calculatePrincipal`, () => {
     it(`should calculate principal payment`, () => {
       // Assert
-      expect(component.calculatePrincipal(100, 20, 30)).toEqual(50);
+      expect(component.calculatePrincipal(100, 20, 30, 10)).toEqual(60);
     });
   });
 
   describe(`calculateNewOutstanding`, () => {
     it(`should calculate new outstanding balance`, () => {
       // Assert
-      expect(component.calculateNewOutstanding(100, 20, 30)).toEqual(50);
+      expect(component.calculateNewOutstanding(100, 50)).toEqual(50);
     });
   });
 
@@ -56,7 +56,7 @@ describe('MortgageComponent', () => {
         escrow: 1,
         interest: 1,
         principal: 3,
-        additional: 0,
+        additional: 0
       };
 
       // Assert
@@ -78,12 +78,24 @@ describe('MortgageComponent', () => {
 
       // Assert
       expect(component.months.length).toBeGreaterThan(0);
-      expect(component.months[component.months.length - 1].outstanding).toBeGreaterThanOrEqual(3.334);
-      expect(component.months[component.months.length - 1].outstanding).toBeLessThanOrEqual(3.335);
-      expect(component.months[component.months.length - 1].interest).toBeGreaterThanOrEqual(0.033);
-      expect(component.months[component.months.length - 1].interest).toBeLessThanOrEqual(0.034);
-      expect(component.months[component.months.length - 1].principal).toBeGreaterThanOrEqual(6.96);
-      expect(component.months[component.months.length - 1].principal).toBeLessThanOrEqual(6.97);
+      expect(
+        component.months[component.months.length - 1].outstanding
+      ).toBeGreaterThanOrEqual(3.334);
+      expect(
+        component.months[component.months.length - 1].outstanding
+      ).toBeLessThanOrEqual(3.335);
+      expect(
+        component.months[component.months.length - 1].interest
+      ).toBeGreaterThanOrEqual(0.033);
+      expect(
+        component.months[component.months.length - 1].interest
+      ).toBeLessThanOrEqual(0.034);
+      expect(
+        component.months[component.months.length - 1].principal
+      ).toBeGreaterThanOrEqual(7.96);
+      expect(
+        component.months[component.months.length - 1].principal
+      ).toBeLessThanOrEqual(7.97);
     });
   });
 

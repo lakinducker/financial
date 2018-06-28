@@ -42,12 +42,12 @@ export class MortgageComponent implements OnInit {
     return outstanding * (this.convertPercentage(rate) / 12);
   }
 
-  calculatePrincipal(monthly, escrow, interest) {
-    return monthly - escrow - interest;
+  calculatePrincipal(monthly, escrow, interest, additional) {
+    return monthly - escrow - interest + additional;
   }
 
-  calculateNewOutstanding(outstanding, principal, additional) {
-    return outstanding - principal - additional;
+  calculateNewOutstanding(outstanding, principal) {
+    return outstanding - principal;
   }
 
   calculateMonth(outstanding, rate, monthly, escrow, additional): Month {
@@ -60,7 +60,8 @@ export class MortgageComponent implements OnInit {
       principal: this.calculatePrincipal(
         monthly,
         escrow,
-        this.calculateInterestPayment(outstanding, rate)
+        this.calculateInterestPayment(outstanding, rate),
+        additional
       ),
       additional: additional
     };
@@ -86,8 +87,7 @@ export class MortgageComponent implements OnInit {
       this.months.push(currentMonth);
       currentOustanding = this.calculateNewOutstanding(
         currentOustanding,
-        currentMonth.principal,
-        this.additional
+        currentMonth.principal
       );
       count--;
     }
