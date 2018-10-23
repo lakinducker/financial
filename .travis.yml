@@ -1,7 +1,7 @@
 sudo: required
 language: node_js
 node_js:
-  - "10.5.0"
+  - '10.5.0'
 
 addons:
   chrome: stable
@@ -12,7 +12,7 @@ before_install:
 
 script:
   - ng lint
-  - ng test --browser=ChomeHeadless --watch=false --code-coverage --sm=false
+  - ng test
   - ng build --prod
 
 deploy:
@@ -33,4 +33,4 @@ deploy:
   # Path to a directory containing your built site.
   local_dir: dist
   # Set the Cache-Control header.
-  cache_control: "max-age=21600"
+  cache_control: 'max-age=21600'
