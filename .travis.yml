@@ -12,7 +12,7 @@ before_install:
 
 script:
   - ng lint
-  - ng test --browser=ChomeHeadless --watch=false --sm=false
+  - ng test --browsers=ChomeHeadless --watch=false --code-coverage --source-map=false
   - ng build --prod
 
 deploy:
