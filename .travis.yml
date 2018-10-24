@@ -12,7 +12,7 @@ before_install:
 
 script:
   - ng lint
-  - ng test --watch=false
+  - ng test --watch=false --browsers=ChromeHeadless
   - ng build --prod
 
 deploy:
