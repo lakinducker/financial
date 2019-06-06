@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./cagr.component.scss']
 })
 export class CagrComponent implements OnInit {
-  @ViewChild(NgForm) form: NgForm;
+  @ViewChild(NgForm, { static: true }) form: NgForm;
   beginning: number;
   ending: number;
   rate: number;

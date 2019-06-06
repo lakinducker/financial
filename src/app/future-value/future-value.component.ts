@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./future-value.component.scss']
 })
 export class FutureValueComponent implements OnInit {
-  @ViewChild(NgForm) form: NgForm;
+  @ViewChild(NgForm, { static: true }) form: NgForm;
   presentValue: number;
   rate: number;
   periods: number;
