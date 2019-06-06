@@ -7,7 +7,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./compound-interest.component.scss']
 })
 export class CompoundInterestComponent implements OnInit {
-  @ViewChild(NgForm) form: NgForm;
+  @ViewChild(NgForm, { static: true }) form: NgForm;
   originalBalance: number;
   rate: number;
   periods: number;

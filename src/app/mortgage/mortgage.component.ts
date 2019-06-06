@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./mortgage.component.scss']
 })
 export class MortgageComponent implements OnInit {
-  @ViewChild(NgForm) form: NgForm;
+  @ViewChild(NgForm, { static: true }) form: NgForm;
   months: Month[] = [];
   outstanding: number;
   rate: number;
