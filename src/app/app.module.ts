@@ -1,17 +1,15 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-
 import { AppComponent } from './app.component';
-import { FutureValueComponent } from './future-value/future-value.component';
-import { CompoundInterestComponent } from './compound-interest/compound-interest.component';
-import { PresentValueComponent } from './present-value/present-value.component';
-import { MortgageComponent } from './mortgage/mortgage.component';
 import { CagrComponent } from './cagr/cagr.component';
+import { CompoundInterestComponent } from './compound-interest/compound-interest.component';
+import { FutureValueComponent } from './future-value/future-value.component';
+import { MortgageComponent } from './mortgage/mortgage.component';
+import { PresentValueComponent } from './present-value/present-value.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +24,6 @@ import { CagrComponent } from './cagr/cagr.component';
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
     ChartsModule,
     BrowserAnimationsModule, // required animations module
     RouterModule.forRoot(
