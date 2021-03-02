@@ -36,7 +36,7 @@ import { PresentValueComponent } from './present-value/present-value.component';
         { path: '', redirectTo: 'mortgage', pathMatch: 'full' },
         { path: '**', redirectTo: 'mortgage', pathMatch: 'full' }
       ],
-      { useHash: true }
+      { useHash: true, relativeLinkResolution: 'legacy' }
     )
   ],
   providers: [],
