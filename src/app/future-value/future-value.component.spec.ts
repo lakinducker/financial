@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FutureValueComponent } from './future-value.component';
 import { NgForm, FormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ describe('FutureValueComponent', () => {
   let component: FutureValueComponent;
   let fixture: ComponentFixture<FutureValueComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FutureValueComponent ],
       imports: [ FormsModule ]
